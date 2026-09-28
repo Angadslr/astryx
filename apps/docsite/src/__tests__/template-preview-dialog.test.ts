@@ -4,7 +4,7 @@
 
 /**
  * @file Template preview selection and transition regressions.
- * @input Mounted TemplatePreviewDialog with real React scheduling and mocked UI.
+ * @input Mounted TemplatePreviewDialog with real React scheduling and mocked header, content, and footer UI.
  * @output Records every committed visible preview and verifies close stays responsive.
  * @position Docsite regression coverage for gallery preview selection and navigation.
  */
@@ -35,8 +35,16 @@ vi.mock('@astryxdesign/core/Layout', () => ({
   HStack: Box,
   LayoutHeader: Box,
   LayoutContent: Box,
-  Layout: ({header, content}: {header: ReactNode; content: ReactNode}) =>
-    createElement('div', null, header, content),
+  LayoutFooter: Box,
+  Layout: ({
+    header,
+    content,
+    footer,
+  }: {
+    header: ReactNode;
+    content: ReactNode;
+    footer: ReactNode;
+  }) => createElement('div', null, header, content, footer),
 }));
 vi.mock('@astryxdesign/core/Button', () => ({
   Button: ({
